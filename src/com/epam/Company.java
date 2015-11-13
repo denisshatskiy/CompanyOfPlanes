@@ -52,5 +52,16 @@ public class Company {
             System.out.println(" " + plane.getDistance());
         }
     }
+
+    public void searchByParametr(double bottomParametr, double topParametr) {
+        double distance;
+        System.out.println("Поиск самолета по параметру \"Дальность полета\" (" + bottomParametr + "," + topParametr + ")");
+        for (Plane plane : planes){
+            distance = plane.getDistance();
+            if(distance >= bottomParametr && distance <= topParametr){
+                System.out.println(" " + plane.getDistance());
+            }
+        }
+    }
 }
 
