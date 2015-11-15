@@ -15,13 +15,19 @@ public class Company {
     }
 
     NumberFormat formatter = NumberFormat.getNumberInstance();
+    Writer writer = new Writer();
 
     public void printPlaneList() {
         System.out.println("List of planes in company : ");
+        writer.writeFile("List of planes in company : ");
         if (planes.isEmpty()) {
             System.out.println("List is Empty");
+            writer.writeFile("List is Empty");
         } else {
-            for (Plane plane : planes) System.out.println(plane.toString());
+            for (Plane plane : planes) {
+                System.out.println(plane.toString());
+                writer.writeFile(plane.toString());
+            }
         }
     }
 
@@ -33,6 +39,7 @@ public class Company {
     public void printTotalCapacity(){
         defineTotalCapacity();
         System.out.println("\nTotal capacity : " + formatter.format(totalCapacity));
+        writer.writeFile("\nTotal capacity : " + formatter.format(totalCapacity).toString());
     }
 
     public double defineTotalCarrying(){
@@ -43,6 +50,7 @@ public class Company {
     public void printTotalCarrying(){
         defineTotalCarrying();
         System.out.println("\nTotal carrying : " + formatter.format(totalCarrying));
+        writer.writeFile("\nTotal carrying : " + formatter.format(totalCarrying).toString());
     }
 
     public void sortPlaneFromCompany() {
@@ -52,18 +60,22 @@ public class Company {
     public void printSortPlane(){
         sortPlaneFromCompany();
         System.out.println("\nSorted list of planes : ");
+        writer.writeFile("\nSorted list of planes : ");
         for (Plane plane : planes) {
             System.out.println(plane.getName() + " : " + formatter.format(plane.getDistance()));
+            writer.writeFile(plane.getName() + " : " + formatter.format(plane.getDistance()).toString());
         }
     }
 
     public void searchByParametr(double bottomParametr, double topParametr) {
         double distance;
         System.out.println("\nSearch by parameter \"Distance\" (" + formatter.format(bottomParametr) + " , " + formatter.format(topParametr) + ")");
+        writer.writeFile("\nSearch by parameter \"Distance\" (" + formatter.format(bottomParametr) + " , " + formatter.format(topParametr) + ")");
         for (Plane plane : planes){
             distance = plane.getDistance();
             if(distance >= bottomParametr && distance <= topParametr){
                 System.out.println(plane.getName() + " : " + formatter.format(plane.getDistance()));
+                writer.writeFile(plane.getName() + " : " + formatter.format(plane.getDistance()));
             }
         }
     }
