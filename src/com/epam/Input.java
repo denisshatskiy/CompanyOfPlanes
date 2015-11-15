@@ -1,23 +1,22 @@
 package com.epam;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
+import java.util.DoubleSummaryStatistics;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class Input {
     Company company = new Company();
 
-    public Company inputNumberOfSeats(){
+    public Company inputManually(){
         Scanner scanner = new Scanner(System.in);
         for (int i = 0; i < 3; i ++) {
             System.out.println("Введите тип самолета P или C : ");
             String planType= scanner.next();
             switch (planType){
                 case "P" :{
-                    System.out.println("Введите данные через Enter (Carrying, Distance, NumberOfSeats) : ");
-                    PassengerPlane passengerPlane = new PassengerPlane(scanner.nextDouble(), scanner.nextDouble());
+                    System.out.println("Введите данные через Enter (Name, Carrying, Distance, NumberOfSeats) : ");
+                    PassengerPlane passengerPlane = new PassengerPlane(scanner.next(), scanner.nextDouble(), scanner.nextDouble());
                     passengerPlane.setSeatsNumber(scanner.nextInt());
                     passengerPlane.defineCapacity();
 
@@ -25,8 +24,8 @@ public class Input {
                     break;
                 }
                 case "C" :{
-                    System.out.println("Введите данные через Enter (Carrying, Distance, NumberOfSeats) : ");
-                    CargoPlane cargoPlane= new CargoPlane(scanner.nextDouble(), scanner.nextDouble());
+                    System.out.println("Введите данные через Enter (Name, Carrying, Distance, NumberOfSeats) : ");
+                    CargoPlane cargoPlane= new CargoPlane(scanner.next(), scanner.nextDouble(), scanner.nextDouble());
                     cargoPlane.setBoxNumber(scanner.nextInt());
                     cargoPlane.defineCapacity();
 
@@ -38,48 +37,42 @@ public class Input {
         return company;
     }
 
-   /* public Company inputFromFile() throws IOException {
-        String fileName = "C://file.txt";
-        BufferedReader read = null;
+    public Company inputFromFile() throws IOException {
+        File inputFile = new File("D:\\file.txt");
         try {
-            read = new BufferedReader(new java.io.FileReader(fileName));
+            BufferedReader read  = new BufferedReader(new java.io.FileReader(inputFile));
             String line;
-            String tmpLine;
-            String tmpNextLine = null;
-            while ((line = read.readLine()) != null) {
-                StringTokenizer st = new StringTokenizer(line, " : ");
-                tmpLine = line.substring(0, line.indexOf(" : "));
-                if (!tmpLine.equals(tmpNextLine)) {
-                    tmpNextLine = tmpLine;
-                    while (st.hasMoreTokens()) {
-                        if (line.contains("Passenger")) {
-                            st.nextToken();
-                            PassengerPlane passengerPlane = new PassengerPlane(Double.valueOf(st.nextToken()), Double.valueOf(st.nextToken()));
-                            passengerPlane.setSeatsNumber(Integer.valueOf(st.nextToken()));
-                            company.addPlanesToCompanyList(passengerPlane);
-                        }else if (line.contains("Cargo")){
-                            st.nextToken();
-                            CargoPlane cargoPlane = new CargoPlane(Double.valueOf(st.nextToken()),Double.valueOf(st.nextToken()));
-                            cargoPlane.setBoxNumber(Integer.valueOf(st.nextToken()));
-                            company.addPlanesToCompanyList(cargoPlane);
-                        }
+            while ((line = read.readLine())!= null) {
+                StringTokenizer stringTokenizer = new StringTokenizer(line, " : ");
+                while (stringTokenizer.hasMoreElements()) {
+                    if (line.contains("P")) {
+                        stringTokenizer.nextElement();
+                        PassengerPlane passengerPlane = new PassengerPlane(stringTokenizer.nextToken(), Double.valueOf(stringTokenizer.nextToken()), Double.valueOf(stringTokenizer.nextToken()));
+                        passengerPlane.setSeatsNumber(Integer.valueOf(stringTokenizer.nextToken()));
+                        passengerPlane.defineCapacity();
+                        company.addPlanesToCompanyList(passengerPlane);
+                    } else if (line.contains("C")) {
+                        stringTokenizer.nextElement();
+                        CargoPlane cargoPlane = new CargoPlane(stringTokenizer.nextToken(), Double.valueOf(stringTokenizer.nextToken()), Double.valueOf(stringTokenizer.nextToken()));
+                        cargoPlane.setBoxNumber(Integer.valueOf(stringTokenizer.nextToken()));
+                        cargoPlane.defineCapacity();
+                        company.addPlanesToCompanyList(cargoPlane);
                     }
                 }
             }
+            read.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-        } finally {
-            read.close();
         }
         return company;
-    }*/
+    }
 
     public void defineTopAndBottomLimits(){
         double bottomParametr, topParametr;
         Scanner scanner = new Scanner(System.in);
-        System.out.println("\nВведите нижний параметр для поиска по дальности : ");
+        System.out.println("\nSet the bottom number for search : ");
         bottomParametr = scanner.nextDouble();
-        System.out.println("Введите верхний параметр для поиска по дальности : ");
+        System.out.println("Set the top number for search : ");
         topParametr = scanner.nextDouble();
 
         company.searchByParametr(bottomParametr, topParametr);

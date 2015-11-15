@@ -6,8 +6,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         Input input = new Input();
-        Company company = input.inputNumberOfSeats();
-        //Company company = input.inputFromFile(); - пока не работает, допиливаю
+        Company company = input.inputFromFile();
 
         company.printPlaneList();
         company.printTotalCapacity();

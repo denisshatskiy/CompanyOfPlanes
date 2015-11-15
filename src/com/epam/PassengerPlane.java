@@ -3,8 +3,8 @@ package com.epam;
 public class PassengerPlane extends Plane {
     int seatsNumber;
 
-    PassengerPlane(double car, double dist) {
-        super(car, dist);
+    PassengerPlane(String name, double carrying, double distance) {
+        super(name, carrying, distance);
     }
 
     public void defineCapacity(){

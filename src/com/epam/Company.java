@@ -1,5 +1,6 @@
 package com.epam;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -13,7 +14,10 @@ public class Company {
         planes.add(plane);
     }
 
+    NumberFormat formatter = NumberFormat.getNumberInstance();
+
     public void printPlaneList() {
+        System.out.println("List of planes in company : ");
         if (planes.isEmpty()) {
             System.out.println("List is Empty");
         } else {
@@ -28,7 +32,7 @@ public class Company {
 
     public void printTotalCapacity(){
         defineTotalCapacity();
-        System.out.println("Total capacity : " + totalCapacity);
+        System.out.println("\nTotal capacity : " + formatter.format(totalCapacity));
     }
 
     public double defineTotalCarrying(){
@@ -38,7 +42,7 @@ public class Company {
 
     public void printTotalCarrying(){
         defineTotalCarrying();
-        System.out.println("Total carrying : " + totalCarrying);
+        System.out.println("\nTotal carrying : " + formatter.format(totalCarrying));
     }
 
     public void sortPlaneFromCompany() {
@@ -47,19 +51,19 @@ public class Company {
 
     public void printSortPlane(){
         sortPlaneFromCompany();
-        System.out.println("Сортированный список самолетов : ");
+        System.out.println("\nSorted list of planes : ");
         for (Plane plane : planes) {
-            System.out.println(" " + plane.getDistance());
+            System.out.println(plane.getName() + " : " + formatter.format(plane.getDistance()));
         }
     }
 
     public void searchByParametr(double bottomParametr, double topParametr) {
         double distance;
-        System.out.println("Поиск самолета по параметру \"Дальность полета\" (" + bottomParametr + "," + topParametr + ")");
+        System.out.println("\nSearch by parameter \"Distance\" (" + formatter.format(bottomParametr) + " , " + formatter.format(topParametr) + ")");
         for (Plane plane : planes){
             distance = plane.getDistance();
             if(distance >= bottomParametr && distance <= topParametr){
-                System.out.println(" " + plane.getDistance());
+                System.out.println(plane.getName() + " : " + formatter.format(plane.getDistance()));
             }
         }
     }

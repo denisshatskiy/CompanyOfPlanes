@@ -1,13 +1,27 @@
 package com.epam;
 
+import java.text.NumberFormat;
+
 abstract class Plane{
+    private String name;
     private Double carrying;
     private Double capacity;
     private Double distance;
 
-    Plane(double car, double dist){
-        carrying = car;
-        distance = dist;
+    Plane(String  name, double carrying, double distance){
+        this.name = name;
+        this.carrying = carrying;
+        this.distance = distance;
+    }
+
+    NumberFormat formatter = NumberFormat.getNumberInstance();
+
+    public String getName(){
+        return name;
+    }
+
+    public void setName (String name){
+        this.name = name;
     }
 
     public double getCarrying(){
@@ -29,6 +43,6 @@ abstract class Plane{
     }
 
     public String toString(){
-        return ("Carrying : " + carrying + " capacity : " + capacity + " distance : " + distance);
+        return (name + " - carrying: " + formatter.format(carrying) + " , capacity: " + formatter.format(capacity) + " , distance: " + formatter.format(distance));
     }
 }
