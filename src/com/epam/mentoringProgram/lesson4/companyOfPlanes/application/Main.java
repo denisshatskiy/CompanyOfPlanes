@@ -1,4 +1,8 @@
-package com.epam.mentoringProgram.lesson4.companyOfPlanes;
+package com.epam.mentoringProgram.lesson4.companyOfPlanes.application;
+
+import com.epam.mentoringProgram.lesson4.companyOfPlanes.subject.CompanyOperations;
+import com.epam.mentoringProgram.lesson4.companyOfPlanes.core.ConsoleAndFileOutput;
+import com.epam.mentoringProgram.lesson4.companyOfPlanes.core.FileReader;
 
 import java.io.IOException;
 

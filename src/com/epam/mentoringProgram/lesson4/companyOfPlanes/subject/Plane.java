@@ -1,4 +1,4 @@
-package com.epam.mentoringProgram.lesson4.companyOfPlanes;
+package com.epam.mentoringProgram.lesson4.companyOfPlanes.subject;
 
 import java.text.NumberFormat;
 

@@ -1,6 +1,6 @@
-package com.epam.mentoringProgram.lesson4.companyOfPlanes;
+package com.epam.mentoringProgram.lesson4.companyOfPlanes.core;
 
-import com.epam.mentoringProgram.lesson4.companyOfPlanes.Plane;
+import com.epam.mentoringProgram.lesson4.companyOfPlanes.subject.Plane;
 
 public class DistanceComparator implements java.util.Comparator<Plane> {
 

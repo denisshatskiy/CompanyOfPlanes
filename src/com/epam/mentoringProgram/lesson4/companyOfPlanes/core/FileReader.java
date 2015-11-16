@@ -1,7 +1,8 @@
-package com.epam.mentoringProgram.lesson4.companyOfPlanes;
+package com.epam.mentoringProgram.lesson4.companyOfPlanes.core;
 
-import com.epam.mentoringProgram.lesson4.companyOfPlanes.childClasses.CargoPlane;
-import com.epam.mentoringProgram.lesson4.companyOfPlanes.childClasses.PassengerPlane;
+import com.epam.mentoringProgram.lesson4.companyOfPlanes.subject.CargoPlane;
+import com.epam.mentoringProgram.lesson4.companyOfPlanes.subject.CompanyOperations;
+import com.epam.mentoringProgram.lesson4.companyOfPlanes.subject.PassengerPlane;
 
 import java.io.*;
 import java.util.*;
