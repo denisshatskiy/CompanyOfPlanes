@@ -14,7 +14,7 @@ public class Main {
         company.printTotalCapacity();
         company.printTotalCarrying();
         company.printSortPlane();
-        input.defineTopAndBottomLimits();
+        company.searchByParameter();
 
     }
 }

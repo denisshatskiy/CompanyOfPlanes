@@ -67,13 +67,15 @@ public class Company {
         }
     }
 
-    public void searchByParametr(double bottomParametr, double topParametr) {
-        double distance;
-        System.out.println("\nSearch by parameter \"Distance\" (" + formatter.format(bottomParametr) + " , " + formatter.format(topParametr) + ")");
-        writer.writeFile("\nSearch by parameter \"Distance\" (" + formatter.format(bottomParametr) + " , " + formatter.format(topParametr) + ")");
+    public void searchByParameter() {
+        Input input = new Input();
+        double[] limitsFroSearch = input.defineTopAndBottomLimits();
+
+        System.out.println("\nSearch by parameter \"Distance\" (" + formatter.format(limitsFroSearch[0]) + " , " + formatter.format(limitsFroSearch[1]) + ")");  //как избавиться от статических значений?
+        writer.writeFile("\nSearch by parameter \"Distance\" (" + formatter.format(limitsFroSearch[0]) + " , " + formatter.format(limitsFroSearch[1]) + ")"); //как избавиться от статических значений?
         for (Plane plane : planes){
-            distance = plane.getDistance();
-            if(distance >= bottomParametr && distance <= topParametr){
+            double distance = plane.getDistance();
+            if(distance >= limitsFroSearch[0] && distance <= limitsFroSearch[1]){
                 System.out.println(plane.getName() + " : " + formatter.format(plane.getDistance()));
                 writer.writeFile(plane.getName() + " : " + formatter.format(plane.getDistance()));
             }

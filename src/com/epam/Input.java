@@ -1,9 +1,8 @@
 package com.epam;
 
 import java.io.*;
-import java.util.DoubleSummaryStatistics;
-import java.util.Scanner;
-import java.util.StringTokenizer;
+import java.lang.reflect.Array;
+import java.util.*;
 
 public class Input {
     Company company = new Company();
@@ -67,14 +66,14 @@ public class Input {
         return company;
     }
 
-    public void defineTopAndBottomLimits(){
-        double bottomParametr, topParametr;
+    public double[] defineTopAndBottomLimits(){
+        double bottomParameter, topParameter;
         Scanner scanner = new Scanner(System.in);
         System.out.println("\nSet the bottom number for search : ");
-        bottomParametr = scanner.nextDouble();
+        bottomParameter = scanner.nextDouble();
         System.out.println("Set the top number for search : ");
-        topParametr = scanner.nextDouble();
+        topParameter = scanner.nextDouble();
 
-        company.searchByParametr(bottomParametr, topParametr);
+        return new double[]{bottomParameter, topParameter};
     }
 }
