@@ -1,16 +1,16 @@
 package com.epam.mentoringProgram.lesson4.companyOfPlanes.core;
 
 import com.epam.mentoringProgram.lesson4.companyOfPlanes.subject.CargoPlane;
-import com.epam.mentoringProgram.lesson4.companyOfPlanes.subject.CompanyOperations;
+import com.epam.mentoringProgram.lesson4.companyOfPlanes.subject.CompanyOfPlanes;
 import com.epam.mentoringProgram.lesson4.companyOfPlanes.subject.PassengerPlane;
 
 import java.io.*;
 import java.util.*;
 
 public class FileReader {
-    CompanyOperations companyOperations = new CompanyOperations();
+    CompanyOfPlanes companyOfPlanes = new CompanyOfPlanes();
 
-    public CompanyOperations inputManually(){
+    public CompanyOfPlanes inputManually(){
         Scanner scanner = new Scanner(System.in);
         for (int i = 0; i < 3; i ++) {
             System.out.println("¬ведите тип самолета P или C : ");
@@ -22,7 +22,7 @@ public class FileReader {
                     passengerPlane.setSeatsNumber(scanner.nextInt());
                     passengerPlane.defineCapacity();
 
-                    companyOperations.addPlanesToCompanyList(passengerPlane);
+                    companyOfPlanes.addPlanesToCompanyList(passengerPlane);
                     break;
                 }
                 case "C" :{
@@ -31,15 +31,15 @@ public class FileReader {
                     cargoPlane.setBoxNumber(scanner.nextInt());
                     cargoPlane.defineCapacity();
 
-                    companyOperations.addPlanesToCompanyList(cargoPlane);
+                    companyOfPlanes.addPlanesToCompanyList(cargoPlane);
                     break;
                 }
             }
         }
-        return companyOperations;
+        return companyOfPlanes;
     }
 
-    public CompanyOperations inputFromFile() throws IOException {
+    public CompanyOfPlanes inputFromFile() throws IOException {
         File inputFile = new File("inputFile.txt");
         try {
             BufferedReader read  = new BufferedReader(new java.io.FileReader(inputFile));
@@ -52,13 +52,13 @@ public class FileReader {
                         PassengerPlane passengerPlane = new PassengerPlane(stringTokenizer.nextToken(), Double.valueOf(stringTokenizer.nextToken()), Double.valueOf(stringTokenizer.nextToken()));
                         passengerPlane.setSeatsNumber(Integer.valueOf(stringTokenizer.nextToken()));
                         passengerPlane.defineCapacity();
-                        companyOperations.addPlanesToCompanyList(passengerPlane);
+                        companyOfPlanes.addPlanesToCompanyList(passengerPlane);
                     } else if (line.contains("C")) {
                         stringTokenizer.nextElement();
                         CargoPlane cargoPlane = new CargoPlane(stringTokenizer.nextToken(), Double.valueOf(stringTokenizer.nextToken()), Double.valueOf(stringTokenizer.nextToken()));
                         cargoPlane.setBoxNumber(Integer.valueOf(stringTokenizer.nextToken()));
                         cargoPlane.defineCapacity();
-                        companyOperations.addPlanesToCompanyList(cargoPlane);
+                        companyOfPlanes.addPlanesToCompanyList(cargoPlane);
                     }
                 }
             }
@@ -66,7 +66,7 @@ public class FileReader {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        return companyOperations;
+        return companyOfPlanes;
     }
 
     public double[] inputTopAndBottomLimits(){

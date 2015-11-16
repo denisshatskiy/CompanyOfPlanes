@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class CompanyOperations {
+public class CompanyOfPlanes {
     private List<Plane> planes = new ArrayList<>();
     private double totalCapacity;
     private double totalCarrying;
