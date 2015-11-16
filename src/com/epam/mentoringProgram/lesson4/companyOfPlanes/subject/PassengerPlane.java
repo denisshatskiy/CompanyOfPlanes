@@ -1,7 +1,6 @@
 package com.epam.mentoringProgram.lesson4.companyOfPlanes.subject;
 
 import com.epam.mentoringProgram.lesson4.companyOfPlanes.my_exception.MyException;
-import com.epam.mentoringProgram.lesson4.companyOfPlanes.my_exception.NegativeValueException;
 
 public class PassengerPlane extends Plane {
     int seatsNumber;
