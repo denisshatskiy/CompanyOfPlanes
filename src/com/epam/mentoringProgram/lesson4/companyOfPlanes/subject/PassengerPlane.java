@@ -7,8 +7,13 @@ public class PassengerPlane extends Plane {
         super(name, carrying, distance);
     }
 
-    public void defineCapacity(){
-        setCapacity(seatsNumber * 0.7);
+    public void defineCapacity() {
+        try {
+            setCapacity(seatsNumber * 0.7);
+        }
+            catch (ArithmeticException e) {
+            System.out.println("There was an invalid arithmetic operation");
+        }
     }
 
     public void setSeatsNumber(int seatsNumber){

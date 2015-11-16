@@ -67,14 +67,19 @@ public class CompanyOfPlanes {
     public void searchByParameter() {
         FileReader fileReader = new FileReader();
         double[] limitsFroSearch = fileReader.inputTopAndBottomLimits();
-
-        consoleAndFileOutput.consoleAndFileWrite("\nSearch by parameter \"Distance\" (" + formatter.format(limitsFroSearch[0]) + " , " + formatter.format(limitsFroSearch[1]) + ")"); //как избавиться от статических значений?
-        for (Plane plane : planes){
-            double distance = plane.getDistance();
-            if(distance >= limitsFroSearch[0] && distance <= limitsFroSearch[1]){
-                consoleAndFileOutput.consoleAndFileWrite(plane.getName() + " : " + formatter.format(plane.getDistance()));
+        try {
+            consoleAndFileOutput.consoleAndFileWrite("\nSearch by parameter \"Distance\" (" + formatter.format(limitsFroSearch[0]) + " , " + formatter.format(limitsFroSearch[1]) + ")"); //как избавиться от статических значений?
+            for (Plane plane : planes){
+                double distance = plane.getDistance();
+                if(distance >= limitsFroSearch[0] && distance <= limitsFroSearch[1]){
+                    consoleAndFileOutput.consoleAndFileWrite(plane.getName() + " : " + formatter.format(plane.getDistance()));
+                }
             }
         }
+        catch (NullPointerException e){
+            System.out.println("There was null value");
+        }
+
     }
 }
 

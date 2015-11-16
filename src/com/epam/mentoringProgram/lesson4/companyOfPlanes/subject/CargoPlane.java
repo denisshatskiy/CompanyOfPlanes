@@ -8,7 +8,11 @@ public class CargoPlane extends Plane {
     }
 
     public void defineCapacity() {
-        setCapacity(boxNumber * 0.89);
+        try {
+            setCapacity(boxNumber * 0.89);
+        } catch (ArithmeticException e) {
+            System.out.println("There was an invalid arithmetic operation");
+        }
     }
 
     public void setBoxNumber(int boxNumber){
