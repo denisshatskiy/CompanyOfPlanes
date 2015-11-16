@@ -1,4 +1,4 @@
-package com.epam;
+package com.epam.mentoringProgram.lesson4.companyOfPlanes.hierarchy;
 
 public class DistanceComparator implements java.util.Comparator<Plane> {
 

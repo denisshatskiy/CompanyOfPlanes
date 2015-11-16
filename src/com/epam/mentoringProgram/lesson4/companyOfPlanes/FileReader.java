@@ -1,42 +1,45 @@
-package com.epam;
+package com.epam.mentoringProgram.lesson4.companyOfPlanes;
+
+import com.epam.mentoringProgram.lesson4.companyOfPlanes.hierarchy.CargoPlane;
+import com.epam.mentoringProgram.lesson4.companyOfPlanes.hierarchy.CompanyOperations;
+import com.epam.mentoringProgram.lesson4.companyOfPlanes.hierarchy.PassengerPlane;
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.*;
 
-public class Input {
-    Company company = new Company();
+public class FileReader {
+    CompanyOperations companyOperations = new CompanyOperations();
 
-    public Company inputManually(){
+    public CompanyOperations inputManually(){
         Scanner scanner = new Scanner(System.in);
         for (int i = 0; i < 3; i ++) {
-            System.out.println("Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ‚Ð¸Ð¿ ÑÐ°Ð¼Ð¾Ð»ÐµÑ‚Ð° P Ð¸Ð»Ð¸ C : ");
+            System.out.println("Ââåäèòå òèï ñàìîëåòà P èëè C : ");
             String planType= scanner.next();
             switch (planType){
                 case "P" :{
-                    System.out.println("Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð´Ð°Ð½Ð½Ñ‹Ðµ Ñ‡ÐµÑ€ÐµÐ· Enter (Name, Carrying, Distance, NumberOfSeats) : ");
+                    System.out.println("Ââåäèòå äàííûå ÷åðåç Enter (Name, Carrying, Distance, NumberOfSeats) : ");
                     PassengerPlane passengerPlane = new PassengerPlane(scanner.next(), scanner.nextDouble(), scanner.nextDouble());
                     passengerPlane.setSeatsNumber(scanner.nextInt());
                     passengerPlane.defineCapacity();
 
-                    company.addPlanesToCompanyList(passengerPlane);
+                    companyOperations.addPlanesToCompanyList(passengerPlane);
                     break;
                 }
                 case "C" :{
-                    System.out.println("Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð´Ð°Ð½Ð½Ñ‹Ðµ Ñ‡ÐµÑ€ÐµÐ· Enter (Name, Carrying, Distance, NumberOfSeats) : ");
+                    System.out.println("Ââåäèòå äàííûå ÷åðåç Enter (Name, Carrying, Distance, NumberOfSeats) : ");
                     CargoPlane cargoPlane= new CargoPlane(scanner.next(), scanner.nextDouble(), scanner.nextDouble());
                     cargoPlane.setBoxNumber(scanner.nextInt());
                     cargoPlane.defineCapacity();
 
-                    company.addPlanesToCompanyList(cargoPlane);
+                    companyOperations.addPlanesToCompanyList(cargoPlane);
                     break;
                 }
             }
         }
-        return company;
+        return companyOperations;
     }
 
-    public Company inputFromFile() throws IOException {
+    public CompanyOperations inputFromFile() throws IOException {
         File inputFile = new File("D:\\file.txt");
         try {
             BufferedReader read  = new BufferedReader(new java.io.FileReader(inputFile));
@@ -49,13 +52,13 @@ public class Input {
                         PassengerPlane passengerPlane = new PassengerPlane(stringTokenizer.nextToken(), Double.valueOf(stringTokenizer.nextToken()), Double.valueOf(stringTokenizer.nextToken()));
                         passengerPlane.setSeatsNumber(Integer.valueOf(stringTokenizer.nextToken()));
                         passengerPlane.defineCapacity();
-                        company.addPlanesToCompanyList(passengerPlane);
+                        companyOperations.addPlanesToCompanyList(passengerPlane);
                     } else if (line.contains("C")) {
                         stringTokenizer.nextElement();
                         CargoPlane cargoPlane = new CargoPlane(stringTokenizer.nextToken(), Double.valueOf(stringTokenizer.nextToken()), Double.valueOf(stringTokenizer.nextToken()));
                         cargoPlane.setBoxNumber(Integer.valueOf(stringTokenizer.nextToken()));
                         cargoPlane.defineCapacity();
-                        company.addPlanesToCompanyList(cargoPlane);
+                        companyOperations.addPlanesToCompanyList(cargoPlane);
                     }
                 }
             }
@@ -63,10 +66,10 @@ public class Input {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        return company;
+        return companyOperations;
     }
 
-    public double[] defineTopAndBottomLimits(){
+    public double[] inputTopAndBottomLimits(){
         double bottomParameter, topParameter;
         Scanner scanner = new Scanner(System.in);
         System.out.println("\nSet the bottom number for search : ");

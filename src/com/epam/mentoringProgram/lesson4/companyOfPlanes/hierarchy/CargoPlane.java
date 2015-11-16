@@ -1,9 +1,9 @@
-package com.epam;
+package com.epam.mentoringProgram.lesson4.companyOfPlanes.hierarchy;
 
 public class CargoPlane extends Plane {
     int boxNumber;
 
-    CargoPlane(String name, double carrying, double distance) {
+    public CargoPlane(String name, double carrying, double distance) {
         super(name, carrying, distance);
     }
 

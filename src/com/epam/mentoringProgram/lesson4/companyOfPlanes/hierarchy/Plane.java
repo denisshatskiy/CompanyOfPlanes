@@ -1,4 +1,4 @@
-package com.epam;
+package com.epam.mentoringProgram.lesson4.companyOfPlanes.hierarchy;
 
 import java.text.NumberFormat;
 
@@ -18,10 +18,6 @@ abstract class Plane{
 
     public String getName(){
         return name;
-    }
-
-    public void setName (String name){
-        this.name = name;
     }
 
     public double getCarrying(){
