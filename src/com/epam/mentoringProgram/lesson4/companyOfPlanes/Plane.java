@@ -1,14 +1,14 @@
-package com.epam.mentoringProgram.lesson4.companyOfPlanes.hierarchy;
+package com.epam.mentoringProgram.lesson4.companyOfPlanes;
 
 import java.text.NumberFormat;
 
-abstract class Plane{
+public abstract class Plane{
     private String name;
     private Double carrying;
     private Double capacity;
     private Double distance;
 
-    Plane(String  name, double carrying, double distance){
+    protected Plane(String name, double carrying, double distance){
         this.name = name;
         this.carrying = carrying;
         this.distance = distance;

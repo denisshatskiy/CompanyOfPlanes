@@ -1,7 +1,5 @@
 package com.epam.mentoringProgram.lesson4.companyOfPlanes;
 
-import com.epam.mentoringProgram.lesson4.companyOfPlanes.hierarchy.CompanyOperations;
-
 import java.io.IOException;
 
 public class Main {

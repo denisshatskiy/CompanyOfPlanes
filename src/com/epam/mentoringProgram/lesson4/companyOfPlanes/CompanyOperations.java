@@ -1,7 +1,9 @@
-package com.epam.mentoringProgram.lesson4.companyOfPlanes.hierarchy;
+package com.epam.mentoringProgram.lesson4.companyOfPlanes;
 
 import com.epam.mentoringProgram.lesson4.companyOfPlanes.ConsoleAndFileOutput;
+import com.epam.mentoringProgram.lesson4.companyOfPlanes.DistanceComparator;
 import com.epam.mentoringProgram.lesson4.companyOfPlanes.FileReader;
+import com.epam.mentoringProgram.lesson4.companyOfPlanes.Plane;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;

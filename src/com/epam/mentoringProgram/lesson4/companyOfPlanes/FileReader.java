@@ -1,8 +1,7 @@
 package com.epam.mentoringProgram.lesson4.companyOfPlanes;
 
-import com.epam.mentoringProgram.lesson4.companyOfPlanes.hierarchy.CargoPlane;
-import com.epam.mentoringProgram.lesson4.companyOfPlanes.hierarchy.CompanyOperations;
-import com.epam.mentoringProgram.lesson4.companyOfPlanes.hierarchy.PassengerPlane;
+import com.epam.mentoringProgram.lesson4.companyOfPlanes.childClasses.CargoPlane;
+import com.epam.mentoringProgram.lesson4.companyOfPlanes.childClasses.PassengerPlane;
 
 import java.io.*;
 import java.util.*;
@@ -40,7 +39,7 @@ public class FileReader {
     }
 
     public CompanyOperations inputFromFile() throws IOException {
-        File inputFile = new File("D:\\file.txt");
+        File inputFile = new File("inputFile.txt");
         try {
             BufferedReader read  = new BufferedReader(new java.io.FileReader(inputFile));
             String line;

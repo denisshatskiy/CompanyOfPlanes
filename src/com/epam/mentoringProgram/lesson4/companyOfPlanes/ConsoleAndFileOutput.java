@@ -3,7 +3,7 @@ package com.epam.mentoringProgram.lesson4.companyOfPlanes;
 import java.io.*;
 
 public class ConsoleAndFileOutput {
-    String filename = "D:\\outputFile.txt";
+    String filename = "outputFile.txt";
 
     public void createFile() {
         PrintStream out = null;

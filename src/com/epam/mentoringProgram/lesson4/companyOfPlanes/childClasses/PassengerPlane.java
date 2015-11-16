@@ -1,4 +1,6 @@
-package com.epam.mentoringProgram.lesson4.companyOfPlanes.hierarchy;
+package com.epam.mentoringProgram.lesson4.companyOfPlanes.childClasses;
+
+import com.epam.mentoringProgram.lesson4.companyOfPlanes.*;
 
 public class PassengerPlane extends Plane {
     int seatsNumber;
