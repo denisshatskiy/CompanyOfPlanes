@@ -1,5 +1,6 @@
 package com.epam.mentoringProgram.lesson4.companyOfPlanes.core;
 
+import com.epam.mentoringProgram.lesson4.companyOfPlanes.my_exception.*;
 import com.epam.mentoringProgram.lesson4.companyOfPlanes.subject.CargoPlane;
 import com.epam.mentoringProgram.lesson4.companyOfPlanes.subject.CompanyOfPlanes;
 import com.epam.mentoringProgram.lesson4.companyOfPlanes.subject.PassengerPlane;
@@ -15,7 +16,7 @@ import java.util.StringTokenizer;
 public class FileReader {
     CompanyOfPlanes companyOfPlanes = new CompanyOfPlanes();
 
-    public CompanyOfPlanes inputManually(){
+    public CompanyOfPlanes inputManually() throws MyException {
         Scanner scanner = new Scanner(System.in);
         for (int i = 0; i < 3; i ++) {
             System.out.println("¬ведите тип самолета P или C : ");
@@ -26,7 +27,6 @@ public class FileReader {
                     PassengerPlane passengerPlane = new PassengerPlane(scanner.next(), scanner.nextDouble(), scanner.nextDouble());
                     passengerPlane.setSeatsNumber(scanner.nextInt());
                     passengerPlane.defineCapacity();
-
                     companyOfPlanes.addPlanesToCompanyList(passengerPlane);
                     break;
                 }
@@ -44,7 +44,7 @@ public class FileReader {
         return companyOfPlanes;
     }
 
-    public CompanyOfPlanes inputFromFile() throws IOException {
+    public CompanyOfPlanes inputFromFile() throws IOException, MyException {
         File inputFile = new File("inputFile.txt");
         try {
             BufferedReader read = new BufferedReader(new java.io.FileReader(inputFile));
