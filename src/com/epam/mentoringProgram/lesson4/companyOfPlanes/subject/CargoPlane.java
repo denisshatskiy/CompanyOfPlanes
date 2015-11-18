@@ -15,8 +15,4 @@ public class CargoPlane extends Plane {
             System.out.println("There was an invalid arithmetic operation");
         }
     }
-
-    public void setBoxNumber(int boxNumber){
-        this.boxNumber = boxNumber;
-    }
 }

@@ -13,10 +13,9 @@ public class Main {
     public static void main(String[] args) throws IOException, MyException {
         FileReader fileReader = new FileReader();
         DataOutput dataOutput = new DataOutput();
+
         CompanyOfPlanes companyOfPlanes = fileReader.inputFromFile();
-
         dataOutput.createFile();
-
 
         dataOutput.consoleAndFileOutput("\nList of planes in the Company : ");
         dataOutput.consoleAndFileOutput(companyOfPlanes.toString());
@@ -34,7 +33,7 @@ public class Main {
         dataOutput.consoleAndFileOutput(companyOfPlanes.toString());
 
         dataOutput.consoleAndFileOutput("\nSearch by parameter \"Distance\" : ");
-        //companyOfPlanes.searchByParameter();
+        //fileReader.inputTopAndBottomLimits();
         dataOutput.listPrint(companyOfPlanes.searchByParameter());
     }
 }

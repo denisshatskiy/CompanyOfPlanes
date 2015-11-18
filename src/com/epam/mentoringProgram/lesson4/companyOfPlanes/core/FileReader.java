@@ -47,36 +47,35 @@ public class FileReader {
         try {
             BufferedReader read = new BufferedReader(new java.io.FileReader(inputFile));
             String line;
-            if (!(inputFile.length() == 0)) {
-                while ((line = read.readLine()) != null) {
-                    StringTokenizer stringTokenizer = new StringTokenizer(line, " : ");
-                    while (stringTokenizer.hasMoreElements()) {
-                        if (line.contains("P")) {
-                            try {
-                                stringTokenizer.nextElement();
-                                PassengerPlane passengerPlane = new PassengerPlane(stringTokenizer.nextToken(), Double.valueOf(stringTokenizer.nextToken()), Double.valueOf(stringTokenizer.nextToken()), Integer.valueOf(stringTokenizer.nextToken()));
-                                companyOfPlanes.addPlanesToCompanyList(passengerPlane);
-                            } catch (NumberFormatException e) {
-                                System.out.println("There was an invalid parameter : line (" + line + ") won't be added to list!");
-                            }
-                        } else if (line.contains("C")) {
-                            try {
-                                stringTokenizer.nextElement();
-                                CargoPlane cargoPlane = new CargoPlane(stringTokenizer.nextToken(), Double.valueOf(stringTokenizer.nextToken()), Double.valueOf(stringTokenizer.nextToken()), Integer.valueOf(stringTokenizer.nextToken()));
-                                companyOfPlanes.addPlanesToCompanyList(cargoPlane);
-                            } catch (NumberFormatException e) {
-                                System.out.println("There was an invalid parameter : line (" + line + ") won't be added to list!");
-                            }
+            //if (!(inputFile.length() == 0)) {
+            while ((line = read.readLine()) != null) {
+                StringTokenizer stringTokenizer = new StringTokenizer(line, " : ");
+                while (stringTokenizer.hasMoreElements()) {
+                    if (line.contains("P")) {
+                        try {
+                            stringTokenizer.nextElement();
+                            PassengerPlane passengerPlane = new PassengerPlane(stringTokenizer.nextToken(), Double.valueOf(stringTokenizer.nextToken()), Double.valueOf(stringTokenizer.nextToken()), Integer.valueOf(stringTokenizer.nextToken()));
+                            companyOfPlanes.addPlanesToCompanyList(passengerPlane);
+                        } catch (NumberFormatException e) {
+                            System.out.println("There was an invalid parameter : line (" + line + ") won't be added to list!");
+                        }
+                    } else if (line.contains("C")) {
+                        try {
+                            stringTokenizer.nextElement();
+                            CargoPlane cargoPlane = new CargoPlane(stringTokenizer.nextToken(), Double.valueOf(stringTokenizer.nextToken()), Double.valueOf(stringTokenizer.nextToken()), Integer.valueOf(stringTokenizer.nextToken()));
+                            companyOfPlanes.addPlanesToCompanyList(cargoPlane);
+                        } catch (NumberFormatException e) {
+                            System.out.println("There was an invalid parameter : line (" + line + ") won't be added to list!");
                         }
                     }
                 }
-                read.close();
-                return companyOfPlanes;
-            } else{
-                System.out.print("File is empty");
             }
-
-        }catch(FileNotFoundException e){
+            read.close();
+            return companyOfPlanes;
+        }catch (NullPointerException e) {
+            System.out.println("File is empty");
+        }
+        catch(FileNotFoundException e){
             System.out.println("File not found");
         }
         return null;

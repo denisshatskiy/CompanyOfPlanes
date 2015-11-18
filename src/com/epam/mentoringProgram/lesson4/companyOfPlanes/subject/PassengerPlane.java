@@ -5,9 +5,14 @@ import com.epam.mentoringProgram.lesson4.companyOfPlanes.my_exception.MyExceptio
 public class PassengerPlane extends Plane {
     int seatsNumber;
 
-    public PassengerPlane(String name, double carrying, double distance, int seatsNumber) {
+    public PassengerPlane(String name, double carrying, double distance, int seatsNumber) throws MyException {
         super(name, carrying, distance);
         this.seatsNumber = seatsNumber;
+        if (seatsNumber < 0){
+            throw new MyException("There are negative value");
+        }else{
+            this.seatsNumber = seatsNumber;
+        }
     }
 
     public void defineCapacity() {
@@ -16,14 +21,6 @@ public class PassengerPlane extends Plane {
         }
         catch (ArithmeticException e) {
             System.out.println("There was an invalid arithmetic operation");
-        }
-    }
-
-    public void setSeatsNumber(int seatsNumber) throws MyException{
-        if (seatsNumber < 0){
-            throw new MyException("There are negative value");
-        }else{
-            this.seatsNumber = seatsNumber;
         }
     }
 }

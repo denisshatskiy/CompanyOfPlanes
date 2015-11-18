@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static com.epam.mentoringProgram.lesson4.companyOfPlanes.subject.Plane.*;
-
 public class CompanyOfPlanes {
     private List<Plane> planes = new ArrayList<>();
     private List<Plane> resultOfSearch = new ArrayList<>();
@@ -22,9 +20,14 @@ public class CompanyOfPlanes {
     public String toString(){
         String string = "";
         for (Plane plane : planes)
-            string += (plane.getName() + " - carrying: " + String.valueOf(formatter.format(plane.getCarrying())) +
-                    " , capacity: " + String.valueOf(formatter.format(plane.getCapacity())) +
-                    " , distance: " + String.valueOf(formatter.format(plane.getDistance())) + "\n");
+            try {
+                string += (plane.getName() + " - carrying: " + String.valueOf(formatter.format(plane.getCarrying())) +
+                        " , capacity: " + String.valueOf(formatter.format(plane.getCapacity())) +
+                        " , distance: " + String.valueOf(formatter.format(plane.getDistance())) + "\n");
+            }
+            catch (NullPointerException e){
+                System.out.println("List contained NULL value:");
+            }
         return string;
     }
 
@@ -55,17 +58,16 @@ public class CompanyOfPlanes {
 
     public List<Plane> searchByParameter() {
         FileReader fileReader = new FileReader();
-        double[] limitsFroSearch = fileReader.inputTopAndBottomLimits();
+        double[] limitsForSearch = fileReader.inputTopAndBottomLimits();
         try {
-            //DataOutput.consoleAndFileOutput("\nSearch by parameter \"Distance\" (" + formatter.format(limitsFroSearch[0]) + " , " + formatter.format(limitsFroSearch[limitsFroSearch.length-1]) + ")");
             for (Plane plane : planes) {
                 double parameterForSearch = plane.getDistance();
-                if (parameterForSearch >= limitsFroSearch[0] && parameterForSearch <= limitsFroSearch[1]) {
+                if (parameterForSearch >= limitsForSearch[0] && parameterForSearch <= limitsForSearch[limitsForSearch.length-1]) {
                     resultOfSearch.add(plane);
                 }
             }
         } catch (NullPointerException e) {
-            System.out.println("There was null value");
+            System.out.println("Limits for search contained NULL value");
         }
         return resultOfSearch;
     }
