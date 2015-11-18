@@ -1,20 +1,19 @@
 package com.epam.mentoringProgram.lesson4.companyOfPlanes.application;
 
-import com.epam.mentoringProgram.lesson4.companyOfPlanes.my_exception.MyException;
+import com.epam.mentoringProgram.lesson4.companyOfPlanes.customException.NegativeValueException;
 import com.epam.mentoringProgram.lesson4.companyOfPlanes.subject.CompanyOfPlanes;
 import com.epam.mentoringProgram.lesson4.companyOfPlanes.core.DataOutput;
 import com.epam.mentoringProgram.lesson4.companyOfPlanes.core.FileReader;
-import com.epam.mentoringProgram.lesson4.companyOfPlanes.subject.Plane;
 
 import java.io.IOException;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException, MyException {
+    public static void main(String[] args) throws IOException, NegativeValueException {
         FileReader fileReader = new FileReader();
         DataOutput dataOutput = new DataOutput();
 
-        CompanyOfPlanes companyOfPlanes = fileReader.inputFromFile();
+        CompanyOfPlanes companyOfPlanes = fileReader.readFromXML();
         dataOutput.createFile();
 
         dataOutput.consoleAndFileOutput("\nList of planes in the Company : ");
