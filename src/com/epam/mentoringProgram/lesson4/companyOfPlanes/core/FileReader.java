@@ -1,10 +1,16 @@
 package com.epam.mentoringProgram.lesson4.companyOfPlanes.core;
 
-import com.epam.mentoringProgram.lesson4.companyOfPlanes.my_exception.*;
+import com.epam.mentoringProgram.lesson4.companyOfPlanes.customException.NegativeValueException;
 import com.epam.mentoringProgram.lesson4.companyOfPlanes.subject.CargoPlane;
 import com.epam.mentoringProgram.lesson4.companyOfPlanes.subject.CompanyOfPlanes;
 import com.epam.mentoringProgram.lesson4.companyOfPlanes.subject.PassengerPlane;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -13,10 +19,11 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
+
 public class FileReader {
     CompanyOfPlanes companyOfPlanes = new CompanyOfPlanes();
 
-    public CompanyOfPlanes inputManually() throws MyException {
+    public CompanyOfPlanes inputManually() throws NegativeValueException {
         Scanner scanner = new Scanner(System.in);
         for (int i = 0; i < 3; i ++) {
             System.out.println("¬ведите тип самолета P или C : ");
@@ -42,7 +49,7 @@ public class FileReader {
         return companyOfPlanes;
     }
 
-    public CompanyOfPlanes inputFromFile() throws IOException, MyException {
+    public CompanyOfPlanes inputFromFile() throws IOException, NegativeValueException {
         File inputFile = new File("inputFile.txt");
         try {
             BufferedReader read = new BufferedReader(new java.io.FileReader(inputFile));
@@ -107,4 +114,48 @@ public class FileReader {
 
         return null;
     }
+
+    public CompanyOfPlanes readFromXML(){
+        try {
+            File inputFile = new File("inputFile.txt");
+            DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+            Document document = documentBuilder.parse(inputFile);
+            document.getDocumentElement().normalize();
+            NodeList nodeList = document.getElementsByTagName("plane");
+            for (int temp = 0; temp < nodeList.getLength(); temp ++){
+                Node node = nodeList.item(temp);
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
+                    Element element = (Element) node;
+                    if (element.getAttribute("planeType").contains("P")) {
+                        try {
+                            PassengerPlane passengerPlane = new PassengerPlane(element.getElementsByTagName("name").item(0).getTextContent(),
+                                    Double.valueOf(element.getElementsByTagName("carrying").item(0).getTextContent()),
+                                    Double.valueOf(element.getElementsByTagName("distance").item(0).getTextContent()),
+                                    Integer.valueOf(element.getElementsByTagName("seatsNumber").item(0).getTextContent()));
+                            companyOfPlanes.addPlanesToCompanyList(passengerPlane);
+                        } catch (NumberFormatException e) {
+                            System.out.println("There was an invalid parameter : plane  (" + element.getElementsByTagName("name").item(0).getTextContent() + ") won't be added to list!");
+                        }
+                    } else if (element.getAttribute("planeType").contains("C")) {
+                        try {
+                            CargoPlane cargoPlane = new CargoPlane(element.getElementsByTagName("name").item(0).getTextContent(),
+                                    Double.valueOf(element.getElementsByTagName("carrying").item(0).getTextContent()),
+                                    Double.valueOf(element.getElementsByTagName("distance").item(0).getTextContent()),
+                                    Integer.valueOf(element.getElementsByTagName("boxNumber").item(0).getTextContent()));
+                            companyOfPlanes.addPlanesToCompanyList(cargoPlane);
+                        } catch (NumberFormatException e) {
+                            System.out.println("There was an invalid parameter : plane (" + element.getElementsByTagName("name").item(0).getTextContent() + ") won't be added to list!");
+                        }
+                    }
+                }
+            }
+            return companyOfPlanes;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }
