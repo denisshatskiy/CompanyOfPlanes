@@ -5,8 +5,9 @@ import com.epam.mentoringProgram.lesson4.companyOfPlanes.my_exception.MyExceptio
 public class PassengerPlane extends Plane {
     int seatsNumber;
 
-    public PassengerPlane(String name, double carrying, double distance) {
+    public PassengerPlane(String name, double carrying, double distance, int seatsNumber) {
         super(name, carrying, distance);
+        this.seatsNumber = seatsNumber;
     }
 
     public void defineCapacity() {

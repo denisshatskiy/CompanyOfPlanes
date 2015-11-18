@@ -24,16 +24,14 @@ public class FileReader {
             switch (planType){
                 case "P" :{
                     System.out.println("¬ведите данные через Enter (Name, Carrying, Distance, NumberOfSeats) : ");
-                    PassengerPlane passengerPlane = new PassengerPlane(scanner.next(), scanner.nextDouble(), scanner.nextDouble());
-                    passengerPlane.setSeatsNumber(scanner.nextInt());
+                    PassengerPlane passengerPlane = new PassengerPlane(scanner.next(), scanner.nextDouble(), scanner.nextDouble(), scanner.nextInt());
                     passengerPlane.defineCapacity();
                     companyOfPlanes.addPlanesToCompanyList(passengerPlane);
                     break;
                 }
                 case "C" :{
                     System.out.println("¬ведите данные через Enter (Name, Carrying, Distance, NumberOfSeats) : ");
-                    CargoPlane cargoPlane= new CargoPlane(scanner.next(), scanner.nextDouble(), scanner.nextDouble());
-                    cargoPlane.setBoxNumber(scanner.nextInt());
+                    CargoPlane cargoPlane= new CargoPlane(scanner.next(), scanner.nextDouble(), scanner.nextDouble(), scanner.nextInt());
                     cargoPlane.defineCapacity();
 
                     companyOfPlanes.addPlanesToCompanyList(cargoPlane);
@@ -56,22 +54,18 @@ public class FileReader {
                         if (line.contains("P")) {
                             try {
                                 stringTokenizer.nextElement();
-                                PassengerPlane passengerPlane = new PassengerPlane(stringTokenizer.nextToken(), Double.valueOf(stringTokenizer.nextToken()), Double.valueOf(stringTokenizer.nextToken()));
-                                passengerPlane.setSeatsNumber(Integer.valueOf(stringTokenizer.nextToken()));
-                                passengerPlane.defineCapacity();
+                                PassengerPlane passengerPlane = new PassengerPlane(stringTokenizer.nextToken(), Double.valueOf(stringTokenizer.nextToken()), Double.valueOf(stringTokenizer.nextToken()), Integer.valueOf(stringTokenizer.nextToken()));
                                 companyOfPlanes.addPlanesToCompanyList(passengerPlane);
                             } catch (NumberFormatException e) {
-                                System.out.println("There was an invalid parameter");
+                                System.out.println("There was an invalid parameter : line (" + line + ") won't be added to list!");
                             }
                         } else if (line.contains("C")) {
                             try {
                                 stringTokenizer.nextElement();
-                                CargoPlane cargoPlane = new CargoPlane(stringTokenizer.nextToken(), Double.valueOf(stringTokenizer.nextToken()), Double.valueOf(stringTokenizer.nextToken()));
-                                cargoPlane.setBoxNumber(Integer.valueOf(stringTokenizer.nextToken()));
-                                cargoPlane.defineCapacity();
+                                CargoPlane cargoPlane = new CargoPlane(stringTokenizer.nextToken(), Double.valueOf(stringTokenizer.nextToken()), Double.valueOf(stringTokenizer.nextToken()), Integer.valueOf(stringTokenizer.nextToken()));
                                 companyOfPlanes.addPlanesToCompanyList(cargoPlane);
                             } catch (NumberFormatException e) {
-                                System.out.println("There was an invalid parameter");
+                                System.out.println("There was an invalid parameter : line (" + line + ") won't be added to list!");
                             }
                         }
                     }
@@ -80,21 +74,19 @@ public class FileReader {
                 return companyOfPlanes;
             } else{
                 System.out.print("File is empty");
-                System.exit(-1);
             }
 
         }catch(FileNotFoundException e){
             System.out.println("File not found");
-            System.exit(-1);
         }
         return null;
     }
 
     public double[] inputTopAndBottomLimits(){
-        double bottomParameter = 0, topParameter = 0;
+        double bottomParameter, topParameter;
         Scanner scanner = new Scanner(System.in);
         try {
-            System.out.println("\nSet the bottom number for search :  ");
+            System.out.println("Set the bottom number for search :  ");
             bottomParameter = scanner.nextDouble();
             try {
                 System.out.println("Set the top number for search : ");

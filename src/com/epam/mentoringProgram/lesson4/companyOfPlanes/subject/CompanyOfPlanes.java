@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static com.epam.mentoringProgram.lesson4.companyOfPlanes.subject.Plane.*;
+
 public class CompanyOfPlanes {
     private List<Plane> planes = new ArrayList<>();
     private List<Plane> resultOfSearch = new ArrayList<>();
@@ -17,9 +19,9 @@ public class CompanyOfPlanes {
     NumberFormat formatter = NumberFormat.getNumberInstance();
 
 
-    public String toString(List<Plane> tempList){
+    public String toString(){
         String string = "";
-        for (Plane plane : tempList)
+        for (Plane plane : planes)
             string += (plane.getName() + " - carrying: " + String.valueOf(formatter.format(plane.getCarrying())) +
                     " , capacity: " + String.valueOf(formatter.format(plane.getCapacity())) +
                     " , distance: " + String.valueOf(formatter.format(plane.getDistance())) + "\n");
@@ -27,6 +29,7 @@ public class CompanyOfPlanes {
     }
 
     public void addPlanesToCompanyList(Plane plane) {
+        plane.defineCapacity();
         planes.add(plane);
     }
 
@@ -58,13 +61,13 @@ public class CompanyOfPlanes {
             for (Plane plane : planes) {
                 double parameterForSearch = plane.getDistance();
                 if (parameterForSearch >= limitsFroSearch[0] && parameterForSearch <= limitsFroSearch[1]) {
-                    planes.add(plane);
+                    resultOfSearch.add(plane);
                 }
             }
         } catch (NullPointerException e) {
             System.out.println("There was null value");
         }
-        return planes;
+        return resultOfSearch;
     }
 }
 

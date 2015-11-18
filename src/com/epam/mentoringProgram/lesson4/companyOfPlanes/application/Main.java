@@ -34,7 +34,7 @@ public class Main {
         dataOutput.consoleAndFileOutput(companyOfPlanes.toString());
 
         dataOutput.consoleAndFileOutput("\nSearch by parameter \"Distance\" : ");
-        companyOfPlanes.searchByParameter();
-        dataOutput.consoleAndFileOutput(companyOfPlanes.toString());
+        //companyOfPlanes.searchByParameter();
+        dataOutput.listPrint(companyOfPlanes.searchByParameter());
     }
 }
