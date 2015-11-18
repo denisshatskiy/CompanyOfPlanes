@@ -94,7 +94,7 @@ public class FileReader {
         double bottomParameter = 0, topParameter = 0;
         Scanner scanner = new Scanner(System.in);
         try {
-            System.out.println("\nSet the bottom number for search : ");
+            System.out.println("\nSet the bottom number for search :  ");
             bottomParameter = scanner.nextDouble();
             try {
                 System.out.println("Set the top number for search : ");
