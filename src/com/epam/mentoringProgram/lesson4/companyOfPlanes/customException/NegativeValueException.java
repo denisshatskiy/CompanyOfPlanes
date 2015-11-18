@@ -1,4 +1,4 @@
-package com.epam.mentoringProgram.lesson4.companyOfPlanes.custom_exception;
+package com.epam.mentoringProgram.lesson4.companyOfPlanes.customException;
 
 public class NegativeValueException extends Exception {
     public NegativeValueException() {
