@@ -1,15 +1,15 @@
 package com.epam.mentoringProgram.lesson4.companyOfPlanes.subject;
 
-import com.epam.mentoringProgram.lesson4.companyOfPlanes.my_exception.MyException;
+import com.epam.mentoringProgram.lesson4.companyOfPlanes.customException.NegativeValueException;
 
 public class PassengerPlane extends Plane {
     int seatsNumber;
 
-    public PassengerPlane(String name, double carrying, double distance, int seatsNumber) throws MyException {
+    public PassengerPlane(String name, double carrying, double distance, int seatsNumber) throws NegativeValueException {
         super(name, carrying, distance);
         this.seatsNumber = seatsNumber;
         if (seatsNumber < 0){
-            throw new MyException("There are negative value");
+            throw new NegativeValueException("There are negative value");
         }else{
             this.seatsNumber = seatsNumber;
         }
@@ -20,7 +20,7 @@ public class PassengerPlane extends Plane {
             setCapacity(seatsNumber * 0.7);
         }
         catch (ArithmeticException e) {
-            System.out.println("There was an invalid arithmetic operation");
+            System.out.println("There was an invalid arithmetic operation!");
         }
     }
 }
