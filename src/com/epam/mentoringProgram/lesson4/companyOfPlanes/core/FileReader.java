@@ -207,7 +207,8 @@ public class FileReader {
                     }
                 }
                 return companyOfPlanes;
-            } catch (SQLException e ) {
+            }
+            catch (SQLException e ) {
                 System.out.print("Error!");
             } finally {
                 if (stmt != null) { stmt.close(); }
