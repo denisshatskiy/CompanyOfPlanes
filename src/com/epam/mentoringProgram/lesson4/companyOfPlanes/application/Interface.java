@@ -2,6 +2,8 @@ package com.epam.mentoringProgram.lesson4.companyOfPlanes.application;
 
 import com.epam.mentoringProgram.lesson4.companyOfPlanes.core.DataOutput;
 import com.epam.mentoringProgram.lesson4.companyOfPlanes.core.DataReader;
+import com.epam.mentoringProgram.lesson4.companyOfPlanes.customException.FileIsEmptyException;
+import com.epam.mentoringProgram.lesson4.companyOfPlanes.customException.IncorrectTypeOfPlane;
 import com.epam.mentoringProgram.lesson4.companyOfPlanes.customException.NegativeValueException;
 import com.epam.mentoringProgram.lesson4.companyOfPlanes.subject.CompanyOfPlanes;
 
@@ -10,7 +12,7 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Interface {
-    public void userInterface() throws NegativeValueException, IOException, SQLException {
+    public void userInterface() throws NegativeValueException, IOException, SQLException, FileIsEmptyException, IncorrectTypeOfPlane {
         DataReader dataReader = new DataReader();
         DataOutput dataOutput = new DataOutput();
         CompanyOfPlanes companyOfPlanes = new CompanyOfPlanes();
@@ -24,7 +26,7 @@ public class Interface {
                 companyOfPlanes = dataReader.inputManually();
                 break;
             case "2":
-                companyOfPlanes = dataReader.inputFromFile();
+                companyOfPlanes = dataReader.inputFromTXTFile();
                 break;
             case "3":
                 companyOfPlanes = dataReader.readFromXML();

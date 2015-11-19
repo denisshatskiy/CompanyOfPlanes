@@ -9,7 +9,7 @@ public class PassengerPlane extends Plane {
         super(name, carrying, distance);
         this.seatsNumber = seatsNumber;
         if (seatsNumber < 0){
-            throw new NegativeValueException("There are negative value");
+            throw new NegativeValueException();
         }else{
             this.seatsNumber = seatsNumber;
         }
