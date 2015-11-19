@@ -188,8 +188,8 @@ public class FileReader {
 
                     if (planeType.contains("P")) {
                         try {
-                            PassengerPlane passengerPlane = new PassengerPlane(planeName, Double.valueOf(carrying),
-                                    Double.valueOf(distance), Integer.valueOf(freeSpaceNumber));
+                            PassengerPlane passengerPlane = new PassengerPlane(planeName, carrying,
+                                    distance, freeSpaceNumber);
                             companyOfPlanes.addPlanesToCompanyList(passengerPlane);
                         } catch (NumberFormatException e) {
                             System.out.println("There was an invalid parameter : plane  (" + planeName + ") won't be added to list!");
@@ -198,8 +198,8 @@ public class FileReader {
                         }
                     } else if (planeType.contains("C")) {
                         try {
-                            CargoPlane cargoPlane = new CargoPlane(planeName, Double.valueOf(carrying),
-                                    Double.valueOf(distance), Integer.valueOf(freeSpaceNumber));
+                            CargoPlane cargoPlane = new CargoPlane(planeName, carrying,
+                                    distance, freeSpaceNumber);
                             companyOfPlanes.addPlanesToCompanyList(cargoPlane);
                         } catch (NumberFormatException e) {
                             System.out.println("There was an invalid parameter : plane (" + planeName + ") won't be added to list!");
