@@ -26,7 +26,9 @@ public class DataReader {
 
     public CompanyOfPlanes inputManually() throws NegativeValueException {
         Scanner scanner = new Scanner(System.in);
-        for (int i = 0; i < 3; i ++) {
+        System.out.println("Set the number of planes, which you want to input : ");
+        int numberOfPlanes = scanner.nextInt();
+        for (int i  = 0; i < numberOfPlanes; i ++) {
             System.out.println("¬ведите тип самолета P или C : ");
             String planType= scanner.next();
             switch (planType){
@@ -51,7 +53,7 @@ public class DataReader {
     }
 
     public CompanyOfPlanes inputFromFile() throws IOException, NegativeValueException {
-        File inputFile = new File("inputFile.txt");
+        File inputFile = new File("inputFileTXT.txt");
         try {
             BufferedReader read = new BufferedReader(new java.io.FileReader(inputFile));
             String line;
@@ -89,36 +91,9 @@ public class DataReader {
         return null;
     }
 
-    public double[] inputTopAndBottomLimits(){
-        double bottomParameter, topParameter;
-        Scanner scanner = new Scanner(System.in);
-        try {
-            System.out.println("Set the bottom number for search :  ");
-            bottomParameter = scanner.nextDouble();
-            try {
-                System.out.println("Set the top number for search : ");
-                topParameter = scanner.nextDouble();
-                try {
-                    return new double[]{bottomParameter, topParameter};
-                }
-                catch (NullPointerException e){
-                    System.out.println("There was null value");
-                }
-            }
-            catch (InputMismatchException e){
-                System.out.println("There was a mismatch of types");
-            }
-        }
-        catch (InputMismatchException e) {
-            System.out.println("There was a mismatch of types");
-        }
-
-        return null;
-    }
-
     public CompanyOfPlanes readFromXML(){
         try {
-            File inputFile = new File("inputFile.txt");
+            File inputFile = new File("inputFileXML.txt");
             DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
             Document document = documentBuilder.parse(inputFile);
@@ -222,7 +197,7 @@ public class DataReader {
     public CompanyOfPlanes inputFromJSON() {
         JSONParser parser = new JSONParser();
         try {
-            Object obj = parser.parse(new FileReader("inputFile.txt"));
+            Object obj = parser.parse(new FileReader("inputFileJSON.txt"));
             JSONObject jsonObject = (JSONObject) obj;
             JSONArray companyOfPlanesArray = (JSONArray) jsonObject.get("companyOfPlanes");
 
@@ -255,6 +230,31 @@ public class DataReader {
         }
         catch (Exception e){
             e.printStackTrace();
+        }
+        return null;
+    }
+
+    public double[] inputTopAndBottomLimits() {
+        Scanner scanner = new Scanner(System.in);
+        double bottomParameter, topParameter;
+        try {
+            System.out.println("Set the bottom number for search :  ");
+            bottomParameter = scanner.nextDouble();
+            try {
+                System.out.println("Set the top number for search : ");
+                topParameter = scanner.nextDouble();
+                try {
+                    return new double[]{bottomParameter, topParameter};
+                } catch (NullPointerException e) {
+                    System.out.println("There was null value");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("There was a mismatch of types");
+            }
+        } catch (InputMismatchException e) {
+            System.out.println("There was a mismatch of types");
+        }finally {
+            scanner.close();
         }
         return null;
     }
