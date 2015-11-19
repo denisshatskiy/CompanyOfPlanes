@@ -15,6 +15,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.*;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.StringTokenizer;
@@ -158,4 +159,62 @@ public class FileReader {
         return null;
     }
 
+    public CompanyOfPlanes readFromDatabase() throws SQLException {
+        try {
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }
+        Connection connection;
+        try {
+            connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XE", "test", "test");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        if (connection != null) {
+            Statement stmt = null;
+            try {
+                stmt = connection.createStatement();
+                ResultSet rs = stmt.executeQuery("SELECT * FROM COMPANYOFPLANES");
+                while (rs.next()) {
+                    String planeType = rs.getString("PLANETYPE");
+                    String planeName = rs.getString("NAME");
+                    double carrying = rs.getDouble("CARRYING");
+                    double distance = rs.getDouble("DISTANCE");
+                    int freeSpaceNumber = rs.getInt("FREESPACENUMBER");
+
+                    if (planeType.contains("P")) {
+                        try {
+                            PassengerPlane passengerPlane = new PassengerPlane(planeName, Double.valueOf(carrying),
+                                    Double.valueOf(distance), Integer.valueOf(freeSpaceNumber));
+                            companyOfPlanes.addPlanesToCompanyList(passengerPlane);
+                        } catch (NumberFormatException e) {
+                            System.out.println("There was an invalid parameter : plane  (" + planeName + ") won't be added to list!");
+                        } catch (NegativeValueException e) {
+                            e.printStackTrace();
+                        }
+                    } else if (planeType.contains("C")) {
+                        try {
+                            CargoPlane cargoPlane = new CargoPlane(planeName, Double.valueOf(carrying),
+                                    Double.valueOf(distance), Integer.valueOf(freeSpaceNumber));
+                            companyOfPlanes.addPlanesToCompanyList(cargoPlane);
+                        } catch (NumberFormatException e) {
+                            System.out.println("There was an invalid parameter : plane (" + planeName + ") won't be added to list!");
+                        }
+                    }
+                }
+                return companyOfPlanes;
+            } catch (SQLException e ) {
+                System.out.print("Error!");
+            } finally {
+                if (stmt != null) { stmt.close(); }
+            }
+        } else {
+            System.out.println("Failed to make connection!");
+        }
+        return null;
+    }
 }

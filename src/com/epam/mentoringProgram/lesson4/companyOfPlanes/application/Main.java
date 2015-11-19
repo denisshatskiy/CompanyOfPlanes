@@ -6,14 +6,15 @@ import com.epam.mentoringProgram.lesson4.companyOfPlanes.core.DataOutput;
 import com.epam.mentoringProgram.lesson4.companyOfPlanes.core.FileReader;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException, NegativeValueException {
+    public static void main(String[] args) throws IOException, NegativeValueException, SQLException {
         FileReader fileReader = new FileReader();
         DataOutput dataOutput = new DataOutput();
 
-        CompanyOfPlanes companyOfPlanes = fileReader.readFromXML();
+        CompanyOfPlanes companyOfPlanes = fileReader.readFromDatabase();
         dataOutput.createFile();
 
         dataOutput.consoleAndFileOutput("\nList of planes in the Company : ");

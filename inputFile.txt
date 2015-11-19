@@ -1,3 +1,21 @@
-P : Boeng-747 : 1325 : 5552 : -120.1
-C : AN-127 : 2575.5 : 3110 : 150
-P : Boeng-951 : 1580 : 1111.5 : 151
+<?xml version="1.0"?>
+<companyofplanes>
+   <plane planeType="P">
+	<name>Boeng-747</name>
+	<carrying>1325</carrying>
+	<distance>5552</distance>
+	<seatsNumber>120</seatsNumber>
+   </plane>
+   <plane planeType="C">
+	<name>AN-747</name>
+	<carrying>2575.5</carrying>
+	<distance>3110</distance>
+	<boxNumber>150</boxNumber>
+   </plane>
+	<plane planeType="P">
+	<name>Boeng-951</name>
+	<carrying>1580</carrying>
+	<distance>1111.5</distance>
+	<seatsNumber>151</seatsNumber>
+   </plane>
+</companyofplanes>
