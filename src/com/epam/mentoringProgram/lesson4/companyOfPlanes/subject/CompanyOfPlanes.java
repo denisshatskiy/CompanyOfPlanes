@@ -1,7 +1,7 @@
 package com.epam.mentoringProgram.lesson4.companyOfPlanes.subject;
 
 import com.epam.mentoringProgram.lesson4.companyOfPlanes.core.DistanceComparator;
-import com.epam.mentoringProgram.lesson4.companyOfPlanes.core.FileReader;
+import com.epam.mentoringProgram.lesson4.companyOfPlanes.core.DataReader;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -57,8 +57,8 @@ public class CompanyOfPlanes {
     }
 
     public List<Plane> searchByParameter() {
-        FileReader fileReader = new FileReader();
-        double[] limitsForSearch = fileReader.inputTopAndBottomLimits();
+        DataReader dataReader = new DataReader();
+        double[] limitsForSearch = dataReader.inputTopAndBottomLimits();
         try {
             for (Plane plane : planes) {
                 double parameterForSearch = plane.getDistance();

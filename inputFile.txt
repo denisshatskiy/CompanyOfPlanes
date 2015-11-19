@@ -1,21 +1,25 @@
-<?xml version="1.0"?>
-<companyofplanes>
-   <plane planeType="P">
-	<name>Boeng-747</name>
-	<carrying>1325</carrying>
-	<distance>5552</distance>
-	<seatsNumber>120</seatsNumber>
-   </plane>
-   <plane planeType="C">
-	<name>AN-747</name>
-	<carrying>2575.5</carrying>
-	<distance>3110</distance>
-	<boxNumber>150</boxNumber>
-   </plane>
-	<plane planeType="P">
-	<name>Boeng-951</name>
-	<carrying>1580</carrying>
-	<distance>1111.5</distance>
-	<seatsNumber>151</seatsNumber>
-   </plane>
-</companyofplanes>
+{
+	"companyOfPlanes": [
+		{
+			"planeType": "P",
+			"planeName": "Boeng-747",
+			"carrying": "1325",
+			"distance": "5552",
+			"freeSpaceNumber": "120"
+		},
+		{
+			"planeType": "C",
+			"planeName": "AN-127",
+			"carrying": "2575.5",
+			"distance": "3110",
+			"freeSpaceNumber": "150"
+		},
+		{
+			"planeType": "P",
+			"planeName": "Boeng-951",
+			"carrying": "1580",
+			"distance": "1111.5",
+			"freeSpaceNumber": "151"
+		}
+	]	
+}

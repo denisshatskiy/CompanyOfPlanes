@@ -4,6 +4,9 @@ import com.epam.mentoringProgram.lesson4.companyOfPlanes.customException.Negativ
 import com.epam.mentoringProgram.lesson4.companyOfPlanes.subject.CargoPlane;
 import com.epam.mentoringProgram.lesson4.companyOfPlanes.subject.CompanyOfPlanes;
 import com.epam.mentoringProgram.lesson4.companyOfPlanes.subject.PassengerPlane;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -11,17 +14,14 @@ import org.w3c.dom.NodeList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.sql.*;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
 
-public class FileReader {
+public class DataReader {
     CompanyOfPlanes companyOfPlanes = new CompanyOfPlanes();
 
     public CompanyOfPlanes inputManually() throws NegativeValueException {
@@ -159,7 +159,7 @@ public class FileReader {
         return null;
     }
 
-    public CompanyOfPlanes readFromDatabase() throws SQLException {
+    public CompanyOfPlanes inputFromDatabase() throws SQLException {
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
         } catch (ClassNotFoundException e) {
@@ -218,4 +218,45 @@ public class FileReader {
         }
         return null;
     }
+
+    public CompanyOfPlanes inputFromJSON() {
+        JSONParser parser = new JSONParser();
+        try {
+            Object obj = parser.parse(new FileReader("inputFile.txt"));
+            JSONObject jsonObject = (JSONObject) obj;
+            JSONArray companyOfPlanesArray = (JSONArray) jsonObject.get("companyOfPlanes");
+
+            for (Object aCompanyOfPlanesArray : companyOfPlanesArray) {
+                JSONObject currentPlane = (JSONObject) aCompanyOfPlanesArray;
+                String planeType = (String) currentPlane.get("planeType");
+                String planeName = (String) currentPlane.get("planeName");
+                String carrying = (String) currentPlane.get("carrying");
+                String distance = (String) currentPlane.get("distance");
+                String freeSpaceNumber = (String) currentPlane.get("freeSpaceNumber");
+                if (planeType.contains("P")) {
+                    try {
+                        PassengerPlane passengerPlane = new PassengerPlane(planeName, Double.valueOf(carrying), Double.valueOf(distance), Integer.valueOf(freeSpaceNumber));
+                        companyOfPlanes.addPlanesToCompanyList(passengerPlane);
+                    } catch (NumberFormatException e) {
+                        System.out.println("There was an invalid parameter : plane  (" + planeName + ") won't be added to list!");
+                    } catch (NegativeValueException e) {
+                        e.printStackTrace();
+                    }
+                } else if (planeType.contains("C")) {
+                    try {
+                        CargoPlane cargoPlane = new CargoPlane(planeName, Double.valueOf(carrying), Double.valueOf(distance), Integer.valueOf(freeSpaceNumber));
+                        companyOfPlanes.addPlanesToCompanyList(cargoPlane);
+                    } catch (NumberFormatException e) {
+                        System.out.println("There was an invalid parameter : plane (" + planeName + ") won't be added to list!");
+                    }
+                }
+            }
+            return companyOfPlanes;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }
