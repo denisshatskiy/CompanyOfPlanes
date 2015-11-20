@@ -11,8 +11,9 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-public class Interface {
-    public void userInterface() throws NegativeValueException, IOException, SQLException, FileIsEmptyException, IncorrectTypeOfPlane {
+public class ConsoleInterface {
+    public void setTheMethodOfInput() throws NegativeValueException, IOException, SQLException,
+            FileIsEmptyException, IncorrectTypeOfPlane {
         DataReader dataReader = new DataReader();
         DataOutput dataOutput = new DataOutput();
         CompanyOfPlanes companyOfPlanes = new CompanyOfPlanes();
@@ -20,7 +21,8 @@ public class Interface {
         dataOutput.createFile();
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Choose method of input : \n1 - manual\n2 - from TXT file\n3 - from XML file\n4 - from JSON file\n5 - from database");
+        System.out.println("Choose method of input : \n1 - manual\n2 - from TXT file\n3 " +
+                "- from XML file\n4 - from JSON file\n5 - from database");
         switch (scanner.nextLine()){
             case "1":
                 companyOfPlanes = dataReader.inputManually();
