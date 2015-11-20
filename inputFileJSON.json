@@ -1,0 +1,25 @@
+{
+	"companyOfPlanes": [
+		{
+			"planeType": "P",
+			"planeName": "Boeng-747",
+			"carrying": "1325",
+			"distance": "5552",
+			"freeSpaceNumber": "120"
+		},
+		{
+			"planeType": "C",
+			"planeName": "AN-127",
+			"carrying": "2575.5",
+			"distance": "3110",
+			"freeSpaceNumber": "150"
+		},
+		{
+			"planeType": "P",
+			"planeName": "Boeng-951",
+			"carrying": "1580",
+			"distance": "1111.5",
+			"freeSpaceNumber": "151"
+		}
+	]	
+}
