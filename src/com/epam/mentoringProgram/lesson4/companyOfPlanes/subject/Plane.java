@@ -39,6 +39,7 @@ public abstract class Plane{
     }
 
     public String toString(){
-        return (name + " - carrying: " + formatter.format(carrying) + " , capacity: " + formatter.format(capacity) + " , distance: " + formatter.format(distance));
+        return (name + " - carrying: " + formatter.format(carrying) + " , capacity: " + formatter.format(capacity)
+                + " , distance: " + formatter.format(distance));
     }
 }
