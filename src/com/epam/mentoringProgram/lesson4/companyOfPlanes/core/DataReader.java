@@ -31,19 +31,21 @@ public class DataReader {
         System.out.println("Set the number of planes, which you want to input : ");
         int numberOfPlanes = scanner.nextInt();
         for (int i  = 0; i < numberOfPlanes; i ++) {
-            System.out.println("¬ведите тип самолета P или C : ");
+            System.out.println("Set the plane type \"P\" + or \"C\" : ");
             String planType= scanner.next();
             switch (planType){
                 case "P" :{
-                    System.out.println("¬ведите данные через Enter (Name, Carrying, Distance, NumberOfSeats) : ");
-                    PassengerPlane passengerPlane = new PassengerPlane(scanner.next(), scanner.nextDouble(), scanner.nextDouble(), scanner.nextInt());
+                    System.out.println("Set next parameters with Enter (Name, Carrying, Distance, NumberOfSeats) : ");
+                    PassengerPlane passengerPlane = new PassengerPlane(scanner.next(),
+                            scanner.nextDouble(), scanner.nextDouble(), scanner.nextInt());
                     passengerPlane.defineCapacity();
                     companyOfPlanes.addPlanesToCompanyList(passengerPlane);
                     break;
                 }
                 case "C" :{
-                    System.out.println("¬ведите данные через Enter (Name, Carrying, Distance, NumberOfSeats) : ");
-                    CargoPlane cargoPlane= new CargoPlane(scanner.next(), scanner.nextDouble(), scanner.nextDouble(), scanner.nextInt());
+                    System.out.println("Set next parameters with Enter (Name, Carrying, Distance, NumberOfSeats) : ");
+                    CargoPlane cargoPlane= new CargoPlane(scanner.next(),
+                            scanner.nextDouble(), scanner.nextDouble(), scanner.nextInt());
                     cargoPlane.defineCapacity();
 
                     companyOfPlanes.addPlanesToCompanyList(cargoPlane);
@@ -70,18 +72,26 @@ public class DataReader {
                         if (line.contains("P")) {
                             try {
                                 stringTokenizer.nextElement();
-                                PassengerPlane passengerPlane = new PassengerPlane(stringTokenizer.nextToken(), Double.valueOf(stringTokenizer.nextToken()), Double.valueOf(stringTokenizer.nextToken()), Integer.valueOf(stringTokenizer.nextToken()));
+                                PassengerPlane passengerPlane = new PassengerPlane(stringTokenizer.nextToken(),
+                                        Double.valueOf(stringTokenizer.nextToken()),
+                                        Double.valueOf(stringTokenizer.nextToken()),
+                                        Integer.valueOf(stringTokenizer.nextToken()));
                                 companyOfPlanes.addPlanesToCompanyList(passengerPlane);
                             } catch (NumberFormatException e) {
-                                System.out.println("There was an invalid parameter : line (" + line + ") won't be added to list!");
+                                System.out.println("There was an invalid parameter : line ("
+                                        + line + ") won't be added to list!");
                             }
                         } else if (line.contains("C")) {
                             try {
                                 stringTokenizer.nextElement();
-                                CargoPlane cargoPlane = new CargoPlane(stringTokenizer.nextToken(), Double.valueOf(stringTokenizer.nextToken()), Double.valueOf(stringTokenizer.nextToken()), Integer.valueOf(stringTokenizer.nextToken()));
+                                CargoPlane cargoPlane = new CargoPlane(stringTokenizer.nextToken(),
+                                        Double.valueOf(stringTokenizer.nextToken()),
+                                        Double.valueOf(stringTokenizer.nextToken()),
+                                        Integer.valueOf(stringTokenizer.nextToken()));
                                 companyOfPlanes.addPlanesToCompanyList(cargoPlane);
                             } catch (NumberFormatException e) {
-                                System.out.println("There was an invalid parameter : line (" + line + ") won't be added to list!");
+                                System.out.println("There was an invalid parameter : line ("
+                                        + line + ") won't be added to list!");
                             }
                         }
                     }
@@ -98,7 +108,7 @@ public class DataReader {
     }
 
     public CompanyOfPlanes readFromXML() throws FileIsEmptyException {
-        File inputFile = new File("inputFileXML.txt");
+        File inputFile = new File("inputFileXML.xml");
         if (inputFile.length() == 0) {
             throw new FileIsEmptyException();
         } else {
@@ -114,23 +124,35 @@ public class DataReader {
                         Element element = (Element) node;
                         if (element.getAttribute("planeType").contains("P")) {
                             try {
-                                PassengerPlane passengerPlane = new PassengerPlane(element.getElementsByTagName("name").item(0).getTextContent(),
-                                        Double.valueOf(element.getElementsByTagName("carrying").item(0).getTextContent()),
-                                        Double.valueOf(element.getElementsByTagName("distance").item(0).getTextContent()),
-                                        Integer.valueOf(element.getElementsByTagName("seatsNumber").item(0).getTextContent()));
+                                PassengerPlane passengerPlane = new PassengerPlane(element.
+                                        getElementsByTagName("name").item(0).getTextContent(),
+                                        Double.valueOf(element.
+                                                getElementsByTagName("carrying").item(0).getTextContent()),
+                                        Double.valueOf(element.
+                                                getElementsByTagName("distance").item(0).getTextContent()),
+                                        Integer.valueOf(element
+                                                .getElementsByTagName("seatsNumber").item(0).getTextContent()));
                                 companyOfPlanes.addPlanesToCompanyList(passengerPlane);
                             } catch (NumberFormatException e) {
-                                System.out.println("There was an invalid parameter : plane  (" + element.getElementsByTagName("name").item(0).getTextContent() + ") won't be added to list!");
+                                System.out.println("There was an invalid parameter : plane  ("
+                                        + element.getElementsByTagName("name").item(0).getTextContent()
+                                        + ") won't be added to list!");
                             }
                         } else if (element.getAttribute("planeType").contains("C")) {
                             try {
-                                CargoPlane cargoPlane = new CargoPlane(element.getElementsByTagName("name").item(0).getTextContent(),
-                                        Double.valueOf(element.getElementsByTagName("carrying").item(0).getTextContent()),
-                                        Double.valueOf(element.getElementsByTagName("distance").item(0).getTextContent()),
-                                        Integer.valueOf(element.getElementsByTagName("boxNumber").item(0).getTextContent()));
+                                CargoPlane cargoPlane = new CargoPlane(element.
+                                        getElementsByTagName("name").item(0).getTextContent(),
+                                        Double.valueOf(element.
+                                                getElementsByTagName("carrying").item(0).getTextContent()),
+                                        Double.valueOf(element.
+                                                getElementsByTagName("distance").item(0).getTextContent()),
+                                        Integer.valueOf(element.
+                                                getElementsByTagName("boxNumber").item(0).getTextContent()));
                                 companyOfPlanes.addPlanesToCompanyList(cargoPlane);
                             } catch (NumberFormatException e) {
-                                System.out.println("There was an invalid parameter : plane (" + element.getElementsByTagName("name").item(0).getTextContent() + ") won't be added to list!");
+                                System.out.println("There was an invalid parameter : plane ("
+                                        + element.getElementsByTagName("name").item(0).getTextContent()
+                                        + ") won't be added to list!");
                             }
                         }
                     }
@@ -147,7 +169,7 @@ public class DataReader {
     public CompanyOfPlanes inputFromJSON() {
         JSONParser parser = new JSONParser();
         try {
-            Object obj = parser.parse(new FileReader("inputFileJSON.txt"));
+            Object obj = parser.parse(new FileReader("inputFileJSON.json"));
             JSONObject jsonObject = (JSONObject) obj;
             JSONArray companyOfPlanesArray = (JSONArray) jsonObject.get("companyOfPlanes");
 
@@ -160,19 +182,23 @@ public class DataReader {
                 String freeSpaceNumber = (String) currentPlane.get("freeSpaceNumber");
                 if (planeType.contains("P")) {
                     try {
-                        PassengerPlane passengerPlane = new PassengerPlane(planeName, Double.valueOf(carrying), Double.valueOf(distance), Integer.valueOf(freeSpaceNumber));
+                        PassengerPlane passengerPlane = new PassengerPlane(planeName,
+                                Double.valueOf(carrying), Double.valueOf(distance), Integer.valueOf(freeSpaceNumber));
                         companyOfPlanes.addPlanesToCompanyList(passengerPlane);
                     } catch (NumberFormatException e) {
-                        System.out.println("There was an invalid parameter : plane  (" + planeName + ") won't be added to list!");
+                        System.out.println("There was an invalid parameter : plane  ("
+                                + planeName + ") won't be added to list!");
                     } catch (NegativeValueException e) {
                         e.printStackTrace();
                     }
                 } else if (planeType.contains("C")) {
                     try {
-                        CargoPlane cargoPlane = new CargoPlane(planeName, Double.valueOf(carrying), Double.valueOf(distance), Integer.valueOf(freeSpaceNumber));
+                        CargoPlane cargoPlane = new CargoPlane(planeName,
+                                Double.valueOf(carrying), Double.valueOf(distance), Integer.valueOf(freeSpaceNumber));
                         companyOfPlanes.addPlanesToCompanyList(cargoPlane);
                     } catch (NumberFormatException e) {
-                        System.out.println("There was an invalid parameter : plane (" + planeName + ") won't be added to list!");
+                        System.out.println("There was an invalid parameter : plane ("
+                                + planeName + ") won't be added to list!");
                     }
                 }
             }
@@ -193,7 +219,7 @@ public class DataReader {
         }
         Connection connection;
         try {
-            connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XE", "test", "test");
+            connection = DriverManager.getConnection("jdbc:oracle:thin:@EPKZKARW0456:1521/XE", "test", "test");
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
@@ -217,7 +243,8 @@ public class DataReader {
                                     distance, freeSpaceNumber);
                             companyOfPlanes.addPlanesToCompanyList(passengerPlane);
                         } catch (NumberFormatException e) {
-                            System.out.println("There was an invalid parameter : plane  (" + planeName + ") won't be added to list!");
+                            System.out.println("There was an invalid parameter : plane  ("
+                                    + planeName + ") won't be added to list!");
                         } catch (NegativeValueException e) {
                             e.printStackTrace();
                         }
@@ -227,7 +254,8 @@ public class DataReader {
                                     distance, freeSpaceNumber);
                             companyOfPlanes.addPlanesToCompanyList(cargoPlane);
                         } catch (NumberFormatException e) {
-                            System.out.println("There was an invalid parameter : plane (" + planeName + ") won't be added to list!");
+                            System.out.println("There was an invalid parameter : plane ("
+                                    + planeName + ") won't be added to list!");
                         } catch (NegativeValueException e) {
                             e.printStackTrace();
                         }
