@@ -12,7 +12,7 @@ import org.w3c.dom.NodeList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-public class XMLReaderFromSource extends DataReaderFromSource {
+public class XMLReader extends DataReaderFromSource {
     @Override
     public CompanyOfPlanes readData() throws FileIsEmptyException {
 

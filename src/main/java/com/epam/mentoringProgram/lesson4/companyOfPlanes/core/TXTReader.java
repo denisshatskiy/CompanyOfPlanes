@@ -11,7 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.StringTokenizer;
 
-public class TXTReaderFromSource extends DataReaderFromSource {
+public class TXTReader extends DataReaderFromSource {
 
     @Override
     public CompanyOfPlanes readData() throws FileIsEmptyException {

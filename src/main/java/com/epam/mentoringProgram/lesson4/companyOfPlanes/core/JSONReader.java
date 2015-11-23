@@ -11,7 +11,7 @@ import org.json.simple.parser.JSONParser;
 
 import java.io.FileReader;
 
-public class JSONReaderFromSource extends DataReaderFromSource {
+public class JSONReader extends DataReaderFromSource {
     @Override
     public CompanyOfPlanes readData() throws FileIsEmptyException {
 

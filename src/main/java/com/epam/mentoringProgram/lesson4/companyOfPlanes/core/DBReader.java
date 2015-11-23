@@ -8,7 +8,7 @@ import com.epam.mentoringProgram.lesson4.companyOfPlanes.subject.PassengerPlane;
 
 import java.sql.*;
 
-public class DBReaderFromSource extends DataReaderFromSource {
+public class DBReader extends DataReaderFromSource {
     @Override
     public CompanyOfPlanes readData() throws FileIsEmptyException, SQLException {
 
