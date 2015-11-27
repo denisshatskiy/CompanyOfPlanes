@@ -16,6 +16,11 @@ public class PassengerPlane extends Plane {
         defineCapacity();
     }
 
+    public PassengerPlane(int seatsNumber){
+        super();
+        this.seatsNumber =seatsNumber;
+        }
+
     public void defineCapacity() {
         try {
             setCapacity(seatsNumber * 0.7);

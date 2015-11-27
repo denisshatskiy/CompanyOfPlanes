@@ -14,6 +14,8 @@ public abstract class Plane{
         this.distance = distance;
     }
 
+    protected Plane(){};
+
     NumberFormat formatter = NumberFormat.getNumberInstance();
 
     public String getName(){

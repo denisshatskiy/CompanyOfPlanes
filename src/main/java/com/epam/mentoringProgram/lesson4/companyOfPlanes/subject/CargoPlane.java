@@ -14,6 +14,11 @@ public class CargoPlane extends Plane {
         }
         defineCapacity();
     }
+    public CargoPlane(int boxNumber){
+        super();
+        this.boxNumber =boxNumber;
+    }
+
 
     public void defineCapacity() {
         try {
