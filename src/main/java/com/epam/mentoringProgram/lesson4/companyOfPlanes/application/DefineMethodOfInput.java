@@ -60,6 +60,7 @@ public class DefineMethodOfInput {
         dataOutput.consoleAndFileOutput(companyOfPlanes.toString());
 
         dataOutput.consoleAndFileOutput("\nSearch by parameter \"Distance\" : ");
-        dataOutput.listPrint(companyOfPlanes.searchByParameter());
+        dataReader.inputTopAndBottomLimits();
+
     }
 }

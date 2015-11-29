@@ -18,7 +18,5 @@ public class BaseForTests {
             companyOfPlanes.addPlanesToCompanyList(passengerPlane);
         }
 
-
-
     }
 }

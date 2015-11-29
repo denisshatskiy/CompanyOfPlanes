@@ -6,9 +6,8 @@ import org.testng.annotations.Test;
 
 public class DefineTotalCarryingTest extends BaseForTests{
 
-    @Test
+    @Test(description = "Define total carrying test", groups = "logic")
     public void defineTotalCarrying() throws NegativeValueException {
-
         companyOfPlanes.defineTotalCarrying();
         double result = companyOfPlanes.getTotalCarrying();
         Assert.assertEquals(result, 36D);

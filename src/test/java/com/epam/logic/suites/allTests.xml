@@ -1,0 +1,16 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All tests suite">
+    <test name="Logic tests">
+        <classes>
+            <class name="com.epam.logic.DefineCapacityPassengerPlaneTest"></class>
+            <class name="com.epam.logic.DefineCapacityForCargoPlaneTest"></class>
+            <class name="com.epam.logic.DefineTotalCapacityTest"></class>
+            <class name="com.epam.logic.DefineTotalCarryingTest"></class>
+        </classes>
+    </test>
+    <test name="Search plane test test">
+        <classes>
+            <class name="com.epam.logic.SearchPlaneTest"></class>
+        </classes>
+    </test>
+</suite>

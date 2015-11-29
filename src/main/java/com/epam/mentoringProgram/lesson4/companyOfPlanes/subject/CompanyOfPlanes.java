@@ -1,5 +1,6 @@
 package com.epam.mentoringProgram.lesson4.companyOfPlanes.subject;
 
+import com.epam.mentoringProgram.lesson4.companyOfPlanes.core.DataOutput;
 import com.epam.mentoringProgram.lesson4.companyOfPlanes.core.DistanceComparator;
 import com.epam.mentoringProgram.lesson4.companyOfPlanes.core.DataReader;
 
@@ -10,9 +11,15 @@ import java.util.List;
 
 public class CompanyOfPlanes {
     private List<Plane> planes = new ArrayList<>();
+
+    public List<Plane> getResultOfSearch() {
+        return resultOfSearch;
+    }
+
     private List<Plane> resultOfSearch = new ArrayList<>();
     private double totalCapacity;
     private double totalCarrying;
+    private double[] limitsForSearch;
 
     NumberFormat formatter = NumberFormat.getNumberInstance();
 
@@ -55,20 +62,33 @@ public class CompanyOfPlanes {
         Collections.sort(planes, new DistanceComparator());
     }
 
-    public List<Plane> searchByParameter() {
-        DataReader dataReader = new DataReader();
-        double[] limitsForSearch = dataReader.inputTopAndBottomLimits();
+    public List<Plane> searchByParameter( double[] limitsForSearch) {
+        DataOutput dataOutput = new DataOutput();
+        //dataReader.inputTopAndBottomLimits();
+        //limitsForSearch = dataReader.inputTopAndBottomLimits();
+        //getLimitsForSearch();
         try {
             for (Plane plane : planes) {
                 double parameterForSearch = plane.getDistance();
                 if (parameterForSearch >= limitsForSearch[0] && parameterForSearch <= limitsForSearch[limitsForSearch.length-1]) {
                     resultOfSearch.add(plane);
+                    dataOutput.listPrint(resultOfSearch);
                 }
             }
         } catch (NullPointerException e) {
             System.out.println("Limits for search contained NULL value");
         }
         return resultOfSearch;
+    }
+
+    public double[] getLimitsForSearch(){
+        DataReader dataReader = new DataReader();
+        dataReader.inputTopAndBottomLimits();
+        return limitsForSearch;
+    }
+
+    public void setLimitsForSearch(double[] limitsForSearch){
+        this.limitsForSearch = limitsForSearch;
     }
 }
 

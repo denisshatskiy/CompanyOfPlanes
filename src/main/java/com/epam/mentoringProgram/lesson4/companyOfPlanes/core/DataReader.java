@@ -55,7 +55,8 @@ public class DataReader {
                 System.out.println("Set the top number for search : ");
                 topParameter = scanner.nextDouble();
                 try {
-                    return new double[]{bottomParameter, topParameter};
+                    companyOfPlanes.searchByParameter(new double[]{bottomParameter, topParameter});
+                    //return new double[]{bottomParameter, topParameter};
                 } catch (NullPointerException e) {
                     System.out.println("There was null value");
                 }

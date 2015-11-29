@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 public class DefineTotalCapacityTest extends BaseForTests{
 
-    @Test
+    @Test(description = "Define total capacity test", groups = "logic")
     public void defineTotalCapacity() throws NegativeValueException {
         companyOfPlanes.defineTotalCapacity();
         double result = companyOfPlanes.getTotalCapacity();
